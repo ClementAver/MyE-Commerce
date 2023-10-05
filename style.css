@@ -1,0 +1,146 @@
+body {
+  box-sizing: border-box;
+  max-width: 1024px;
+  padding: 16px;
+  margin: 0 auto;
+
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  font-family: Arial, Helvetica, sans-serif;
+
+  text-align: center;
+}
+
+body:last-child {
+  margin-top: auto;
+}
+
+.hero {
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+}
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.gallery article {
+  margin-top: 0;
+  margin: 16px;
+  padding: 16px;
+  border: 1px solid rgb(110, 110, 110);
+  background-color: rgba(180, 180, 180, 0.5);
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgba(180, 180, 180, 0.5);
+}
+
+.seller {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.shop-comment {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* CART COMPONENT */
+.cart {
+  margin-top: 0;
+  margin: 16px;
+  padding: 16px;
+  border: 1px solid rgb(109, 88, 21);
+  background-color: rgba(224, 181, 37, 0.5);
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgba(224, 181, 37, 0.5);
+}
+
+.cart ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.cart ul li {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  align-items: baseline;
+}
+
+/* CART PAGE */
+.validation {
+  background-color: lightgreen;
+}
+
+.cancelation {
+  background-color: lightcoral;
+}
+
+.add-or-delete {
+  display: flex;
+  gap: 4px;
+}
+
+/* COMMENTS */
+.comments {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.comments article {
+  margin-top: 0;
+  margin: 16px;
+  padding: 16px;
+  border: 1px solid rgb(110, 110, 110);
+  background-color: rgba(180, 180, 180, 0.5);
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgba(180, 180, 180, 0.5);
+}
+
+.comments article p:first-child {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.comments article p:nth-child(3) {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+/* LOGIN */
+.form {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.form div {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.invalid {
+  font-size: 0.8rem;
+  color: crimson;
+}
+
+/* FOOTER */
+footer {
+  margin-top: auto;
+}
