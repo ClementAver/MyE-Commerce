@@ -1,13 +1,17 @@
 <?php
 
-require_once 'src/model.php';
-require_once 'src/models/cart.php';
+namespace Controllers;
 
-function cart()
+use Models\CartRepository;
+
+class Cart
 {
-  $empty = isCartEmpty();
+  public function execute()
+  {
+    $cart = new CartRepository();
+    $empty = $cart->isCartEmpty();
+    $items = $cart->purchasedList();
 
-  $items = purchasedList();
-
-  require_once 'templates/cart.php';
+    require_once 'templates/cart.php';
+  }
 }

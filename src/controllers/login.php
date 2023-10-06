@@ -1,32 +1,40 @@
 <?php
 
-require_once 'src/model.php';
-require_once 'src/models/login.php';
+namespace Controllers;
 
-function login($post)
+use \Utils\DatabaseConnection;
+use Models\LoginRepository;
+
+class Login
 {
-  $userNotFound = false;
-  $validation = [
-    'email' => true,
-    'password' => true,
-  ];
+  public function execute($post)
+  {
+    $login = new LoginRepository();
+    $login->connection = new DatabaseConnection();
 
-  if (isset($post['email']) && isset($post['password'])) {
-    $validation = checkLoginInputs($post);
+    $userNotFound = false;
+    $validation = [
+      'email' => true,
+      'password' => true,
+    ];
 
-    if ($validation['email'] && $validation['password']) {
-      $user = getUser($post['email'], $post['password']);
+    if (isset($post['email']) && isset($post['password'])) {
+      $validation = $login->checkLoginInputs($post);
 
-      if (isset($user['full_name'])) {
-        setUserCookie($user['id']);
-        header('Location: index.php');
-      } else {
-        $userNotFound = true;
+      if ($validation['email'] && $validation['password']) {
+        $user = $login->getUser($post['email'], $post['password']);
+
+        if (isset($user['full_name'])) {
+          $login->setUserCookie($user['id']);
+          header('Location: index.php');
+        } else {
+          $userNotFound = true;
+        }
       }
+
+
     }
 
-
+    require_once 'templates/login.php';
   }
-
-  require_once 'templates/login.php';
 }

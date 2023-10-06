@@ -1,10 +1,17 @@
 <?php
 
-require_once 'src/model.php';
-require_once 'src/models/homepage.php';
+namespace Controllers;
 
-function homepage()
+use Utils\DatabaseConnection;
+use Models\HomepageRepository;
+
+class Homepage
 {
-  $login = isConnected();
-  require_once 'templates/homepage.php';
+  public function execute()
+  {
+    $homepage = new HomepageRepository();
+    $homepage->connection = new DatabaseConnection();
+    $login = $homepage->isConnected();
+    require_once 'templates/homepage.php';
+  }
 }

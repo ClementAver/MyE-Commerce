@@ -1,12 +1,17 @@
 <?php
 
-require_once 'src/model.php';
-require_once 'src/models/logout.php';
+namespace Controllers;
 
-function logout()
+use Models\LogoutRepository;
+
+class Logout
 {
-  if (isset($_COOKIE['LOGGED_USER'])) {
-    unsetUserCookie();
+  public function execute()
+  {
+    $logout = new LogoutRepository();
+    if (isset($_COOKIE['LOGGED_USER'])) {
+      $logout->unsetUserCookie();
+    }
+    header('Location: index.php');
   }
-  header('Location: index.php');
 }

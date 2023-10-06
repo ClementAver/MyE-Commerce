@@ -1,0 +1,16 @@
+{
+    "name": "cleme/my-ecommerce",
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "src/controllers",
+            "Models\\": "src/models",
+            "Utils\\": "src/utils"
+        }
+    },
+    "authors": [
+        {
+            "name": "ClementAver"
+        }
+    ],
+    "require": {}
+}

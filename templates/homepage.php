@@ -1,3 +1,9 @@
+<?php
+use Controllers\Articles;
+use Controllers\Cart;
+
+?>
+
 <?php $title = "Page d'accueil" ?>
 
 <?php ob_start(); ?>
@@ -10,8 +16,8 @@
 
 <?php
 
-gallery();
-cart();
+(new Articles())->execute();
+(new Cart())->execute();
 ?>
 
 <?php $content = ob_get_clean(); ?>

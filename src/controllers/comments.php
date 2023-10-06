@@ -1,25 +1,40 @@
 <?php
 
-require_once 'src/model.php';
-require_once 'src/models/comments.php';
+namespace Controllers;
 
-function comments($id)
+use Utils\DatabaseConnection;
+use Models\CommentRepository;
+use Models\ArticleRepository;
+
+class Comments
 {
-  $comments = getAllComments($id);
+  public function execute($id)
+  {
+    $connection = new DatabaseConnection();
 
-  if (!isset($_GET['comment']) && !isset($_GET['rate'])) {
-    $validation['comment'] = true;
-    $validation['rate'] = true;
+    $commentRepository = new CommentRepository();
+    $commentRepository->connection = $connection;
+    $comments = $commentRepository->getAllComments($id);
+
+    $articleRepository = new ArticleRepository();
+    $articleRepository->connection = $connection;
+
+    $article = $articleRepository->getArticle(($comments[0]->article));
+    $article->connection = $connection;
+
+    if (!isset($_GET['comment']) && !isset($_GET['rate'])) {
+      $validation['comment'] = true;
+      $validation['rate'] = true;
+    }
+
+    if (isset($_GET['comment']) && isset($_GET['rate'])) {
+      $validation['comment'] = boolval($_GET['comment']);
+      $validation['rate'] = boolval($_GET['rate']);
+    }
+
+    $commentForm = $commentRepository->commentForm($article->id, $validation);
+    $averageRating = $article->stars();
+
+    require_once 'templates/comments.php';
   }
-
-  if (isset($_GET['comment']) && isset($_GET['rate'])) {
-    $validation['comment'] = boolval($_GET['comment']);
-    $validation['rate'] = boolval($_GET['rate']);
-  }
-
-  $commentForm = commentForm($id, $validation);
-  $article = $comments[0]['name'];
-  $averageRating = rating(getAverageRating($id));
-
-  require_once 'templates/comments.php';
 }

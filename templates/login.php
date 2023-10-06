@@ -49,7 +49,3 @@
 <?php $content = ob_get_clean(); ?>
 
 <?php require_once 'layout.php' ?>
-<?php
-var_dump($user);
-exit;
-?>
