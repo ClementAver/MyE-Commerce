@@ -2,7 +2,7 @@
 
 namespace Models;
 
-use \Utils\DatabaseConnection;
+use Utils\DatabaseConnection;
 
 class Article
 {

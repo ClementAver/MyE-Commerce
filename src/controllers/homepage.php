@@ -11,7 +11,12 @@ class Homepage
   {
     $homepage = new HomepageRepository();
     $homepage->connection = new DatabaseConnection();
-    $login = $homepage->isConnected();
+
+    $login = '<a href="index.php?action=login">Se connecter</a>';
+    if (isset($_COOKIE['LOGGED_USER']) || !empty($_COOKIE['LOGGED_USER'])) {
+      $login = $homepage->isConnected();
+    }
+
     require_once 'templates/homepage.php';
   }
 }

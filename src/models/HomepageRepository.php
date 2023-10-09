@@ -2,7 +2,7 @@
 
 namespace Models;
 
-use \Utils\DatabaseConnection;
+use Utils\DatabaseConnection;
 
 class HomepageRepository
 {
@@ -10,7 +10,6 @@ class HomepageRepository
 
   public function isConnected()
   { ?>
-
     <?php ob_start(); ?>
     <p>Bonjour,
       <?= $this->getUserFullName() ?> 👋
@@ -19,13 +18,9 @@ class HomepageRepository
       <input name="disconnect" type="hidden" value="yes">
       <button type="submit">Me déconnecter</button>
     </form>
-    <?php $login = ob_get_clean();
+    <?php $content = ob_get_clean();
 
-    if (!isset($_COOKIE['LOGGED_USER']) || empty($_COOKIE['LOGGED_USER'])) {
-      $login = '<a href="index.php?action=login">Se connecter</a>';
-    }
-
-    return $login;
+    return $content;
   }
 
   public function getUserFullName()

@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use \Utils\DatabaseConnection;
+use Utils\DatabaseConnection;
 use Models\LoginRepository;
 
 class Login

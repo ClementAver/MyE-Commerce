@@ -2,14 +2,13 @@
 
 namespace Controllers;
 
-use \Utils\DatabaseConnection;
+use Utils\DatabaseConnection;
 use Models\CommentRepository;
 
 class SubmitComment
 {
   public function execute($post)
   {
-
     $commentRepository = new CommentRepository();
     $commentRepository->connection = new DatabaseConnection();
 
@@ -21,6 +20,7 @@ class SubmitComment
     ];
 
     $validation = $commentRepository->checkCommentInputs($formDatas);
+
     if ($validation['comment'] && $validation['rate']) {
       $commentRepository->setComment($formDatas);
       header('Location: index.php?action=comments&id=' . urlencode($post['article_id']));

@@ -32,7 +32,11 @@ class Comments
       $validation['rate'] = boolval($_GET['rate']);
     }
 
-    $commentForm = $commentRepository->commentForm($article->id, $validation);
+    $commentForm = "";
+    if (isset($_COOKIE['LOGGED_USER']) || !empty($_COOKIE['LOGGED_USER'])) {
+      $commentForm = $commentRepository->commentForm($article->id, $validation);
+    }
+
     $averageRating = $article->stars();
 
     require_once 'templates/comments.php';

@@ -17,8 +17,11 @@ class CartRemove
 
     $article = $articleRepository->getArticle($id);
 
-    $cartRepository->removeArticleFromSESSION($id, $article);
-    $cartRepository->removeFromStock($article);
+    if (isset($_SESSION['CART'][$id])) {
+      $cartRepository->removeArticleFromSESSION($id, $article);
+      $cartRepository->removeFromStock($article);
+    }
+
 
     header('Location: index.php');
   }

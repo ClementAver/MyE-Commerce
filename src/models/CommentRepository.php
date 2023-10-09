@@ -2,7 +2,7 @@
 
 namespace Models;
 
-use \Utils\DatabaseConnection;
+use Utils\DatabaseConnection;
 
 class CommentRepository
 {
@@ -27,12 +27,10 @@ class CommentRepository
   }
   public function commentForm($id, $validation)
   {
-    $content = "";
-    if (isset($_COOKIE['LOGGED_USER']) || !empty($_COOKIE['LOGGED_USER'])):
-      ob_start();
-      require('templates/commentForm.php');
-      $content = ob_get_clean();
-    endif;
+    ob_start();
+    require('templates/commentForm.php');
+    $content = ob_get_clean();
+
     return $content;
   }
 
@@ -46,7 +44,7 @@ class CommentRepository
       $comment = 1;
     }
 
-    if ((intval($rate) < 0 || intval($rate) > 5)) {
+    if ($rate === "" || intval($rate) < 0 || intval($rate) > 5) {
       $rate = 0;
     } else {
       $rate = 1;
