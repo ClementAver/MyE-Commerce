@@ -10,6 +10,8 @@
 
 MyE-Commerce was a personal project, alongside my training as a React application developer, because I wanted to explore other web development processes. I took several online courses and this project helped me to apply what I'd read. Through MyE-Commerce I was able to discover PHP and the MVC model. But also to learn about databases thanks to MySQL.
 
+MyE-Commerce allows users to log in, view a list of items and add them to their shopping basket. They can also write comments about the items for sale and view other user's comments about those items.
+
 <br/><br/>
 
 <p align="center">
